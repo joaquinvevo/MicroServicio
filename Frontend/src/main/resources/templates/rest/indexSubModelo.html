@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mantenedor Estrategia Est Sub Modelo API REST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/submodelo/listar/nuevo/REST}" class="btn btn-primary">Nuevo</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>EST. MODELO ID</th>
+                <th>NOMBRE</th>
+                <th>ALIAS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ORDEN</th>
+                <th>FECHA REGISTRO</th>
+                <th>EDITAR/ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="submodelo : ${submodelos}">  <!-- Cambié "estrategia" a "submodelo" y "estrategias" a "submodelos" -->
+               <td th:text="${submodelo.id}">ID</td>
+               <td th:text="${submodelo.est_modelo_id}">Est Modelo ID</td>
+               <td th:text="${submodelo.nombre}">Nombre</td>
+               <td th:text="${submodelo.alias}">Alias</td>
+               <td th:text="${submodelo.descripcion}">Descripción</td>
+               <td th:text="${submodelo.orden}">Orden</td>
+               <td th:text="${#dates.format(submodelo.fecha_registro, 'dd/MM/yyyy')}">Fecha Registro</td>
+               <td>
+                   <a class="btn btn-warning" th:href="@{/submodelo/editar/REST/}+${submodelo.id}">Editar</a>
+                   <a class="btn btn-danger" th:onclick="fxJSeliminar([[${submodelo.id}]])">Eliminar</a>
+               </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/fxJSfuncionesREST.js"></script>
+</body>
+</html>

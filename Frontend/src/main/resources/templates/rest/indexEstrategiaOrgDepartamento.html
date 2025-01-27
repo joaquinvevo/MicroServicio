@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mantenedor Estrategia/Departamento API REST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/dpto/listar/nuevo/REST}" class="btn btn-primary">Nuevo</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DEPARTAMENTO PADRE ID</th>
+                <th>NOMBRE</th>
+                <th>ALIAS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ORDEN</th>
+                <th>FECHA DE REGISTRO</th>
+                <th>EDITAR/ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+		    <!-- Iterar sobre una lista de departamentos llamada 'departamentos' -->
+		    <tr th:each="dpto : ${departamentos}">
+		        <td th:text="${dpto.id}">${dpto.id}</td>
+		        <td th:text="${dpto.nombre}">${dpto.nombre}</td>
+		        <td th:text="${dpto.alias}">${dpto.alias}</td>
+		        <td th:text="${dpto.descripcion}">${dpto.descripcion}</td>
+		        <td th:text="${dpto.orden}">${dpto.orden}</td>
+		        <td th:text="${#dates.format(dpto.fecha_registro, 'yyyy-MM-dd')}">${dpto.fecha_registro}</td>
+		        <td>
+		            <a class="btn btn-warning" th:href="@{/dpto/editar/REST/}+${dpto.id}">Editar</a>
+		            <a class="btn btn-danger" th:onclick="fxJSeliminar([[${dpto.id}]])">Eliminar</a>
+		        </td>
+		    </tr>
+		</tbody>
+
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/fxJSfuncionesREST.js"></script>
+</body>
+</html>

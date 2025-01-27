@@ -1,0 +1,19 @@
+/backend/microservice-bff/target/
+/backend/MC_ESTRATEGIA_EST_MODELO/target/
+/backend/microservice-eureka/target/
+/backend/microservice-gateway/target/
+/target/
+target/
+
+# Ignorar archivos de clase de Java
+*.class
+
+# Ignorar directorios de compilación
+/target/
+
+# Ignorar archivos de clase
+*.class
+
+# Ignorar archivos de proyecto de Eclipse
+.project
+.classpath

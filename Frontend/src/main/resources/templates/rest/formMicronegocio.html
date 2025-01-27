@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Micronegocio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="col-sm-6">
+        <form th:action="@{/situacion/grabar/REST}" th:object="${situacion}" method="POST">
+            <div class="card">
+            	<div class="form-group">
+                        <label>ID</label>
+                        <input th:field="*{id}" type="text" class="form-control" readonly="readonly"/>
+                    </div>
+                    
+                  
+
+                    <div class="form-group">
+                        <label>Submodelo ID</label>
+                        <input th:field="*{est_submodelo_id}" type="text" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Objetivo ID</label>
+                        <input th:field="*{bcs_objetivo_id}" type="text" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Impacto ID</label>
+                        <input th:field="*{est_impacto_id}" type="text" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Importancia ID</label>
+                        <input th:field="*{est_importancia_id}" type="text" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Relevancia</label>
+                        <input th:field="*{relevancia}" type="number" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input th:field="*{nombre}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Alias</label>
+                        <input th:field="*{alias}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input th:field="*{descripcion}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Orden</label>
+                        <input th:field="*{orden}" type="number" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Incluir</label>
+                        <input th:field="*{incluir}" type="checkbox" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha Registro</label>
+                        <input th:field="*{fecha_registro}" type="date" class="form-control"/>
+                    </div>
+                    
+            	<div class="card-footer">
+                    <input type="submit" value="Guardar" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

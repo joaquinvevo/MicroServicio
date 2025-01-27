@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mantenedor Estrategia Org Cargo API REST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/cargo/listar/nuevo/REST}" class="btn btn-primary">Nuevo</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>EST. PERSONA CARGO ID</th>
+                <th>NOMBRE</th>
+                <th>ALIAS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ORDEN</th>
+                <th>FECHA REGISTRO</th>
+                <th>EDITAR/ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cargo : ${cargos}">  
+               <td th:text="${cargo.id}">ID</td>
+               <td th:text="${cargo.nombre}">Nombre</td>
+               <td th:text="${cargo.alias}">Alias</td>
+               <td th:text="${cargo.descripcion}">Descripción</td>
+               <td th:text="${cargo.orden}">Orden</td>
+               <td th:text="${#dates.format(cargo.fecha_registro, 'yyyy-MM-dd')}">${cargo.fecha_registro}</td>
+               <td>
+                   <a class="btn btn-warning" th:href="@{/cargo/editar/REST/}+${cargo.id}">Editar</a>
+                   <a class="btn btn-danger" th:onclick="fxJSeliminar([[${cargo.id}]])">Eliminar</a>
+               </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/fxJSfuncionesREST.js"></script>
+</body>
+</html>

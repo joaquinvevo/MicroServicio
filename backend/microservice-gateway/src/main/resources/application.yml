@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: microservice-gateway
+  cloud:
+    gateway:
+      routes: 
+        - id: BFF_Proyecto
+          uri: lb://microservice-bff
+          predicates:
+            - Path=/api/bff/estrategia_est_modelo/**
+        - id: BFF_Proyecto_sub_modelo
+          uri: lb://microservice-bff
+          predicates:
+            - Path=/api/bff/estrategia_est_sub_modelo/**
+        - id: BFF_Proyecto_cargo
+          uri: lb://microservice-bff
+          predicates:
+            - Path=/api/bff/estrategia_org_cargo/**
+        - id: BFF_Proyecto_departamento
+          uri: lb://microservice-bff
+          predicates:
+            - Path=/api/bff/estrategia_org_departamento/**
+        - id: BFF_Micronegocio  # Agregado para el micronegocio
+          uri: lb://microservice-bff  # Asegúrate que el nombre coincida con el de tu cliente Feign
+          predicates:
+            - Path=/api/bff/micronegocio/**  # Ruta del BFF para el micronegocio
+

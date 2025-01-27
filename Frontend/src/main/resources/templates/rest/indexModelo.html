@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mantenedor Estrategia Est Modelo API REST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/modelo/listar/nuevo/REST}" class="btn btn-primary">Nuevo</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>ALIAS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ORDEN</th>
+                <th>¿APLICA A DEPARTAMENTO?</th>
+                <th>FECHA REGISTRO</th>
+                <th>EDITAR/ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="modelo : ${modelos}">  <!-- Cambié "estrategia" a "modelo" y "estrategias" a "modelos" -->
+               <td th:text="${modelo.id}">ID</td>
+               <td th:text="${modelo.nombre}">Nombre</td>
+               <td th:text="${modelo.alias}">Alias</td>
+               <td th:text="${modelo.descripcion}">Descripción</td>
+               <td th:text="${modelo.orden}">Orden</td>
+               <td th:text="${modelo.aplicaSoloADepartamentos}">¿APLICA A DEPARTAMENTO?</td>
+               <td th:text="${#dates.format(modelo.fechaRegistro, 'dd/MM/yyyy')}">Fecha Registro</td>
+               <td>
+                   <a class="btn btn-warning" th:href="@{/modelo/editar/REST/}+${modelo.id}">Editar</a>
+                   <a class="btn btn-danger" th:onclick="fxJSeliminar([[${modelo.id}]])">Eliminar</a>
+               </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/fxJSfuncionesREST.js"></script>
+</body>
+</html>

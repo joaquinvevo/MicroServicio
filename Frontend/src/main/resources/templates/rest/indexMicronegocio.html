@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mantenedor Micronegocio API REST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/situacion/listar/nuevo/REST}" class="btn btn-primary">Nuevo</a>
+    <br>
+    <br>
+    <table class="table">
+    	<thead>
+            <tr>
+                <th>ID</th>
+                <th>EST. SUBMODELO ID</th>
+                <th>BCS. OBJETIVO ID</th>
+                <th>EST. IMPACTO ID</th>
+                <th>EST. IMPORTANCIA ID</th>
+                <th>RELEVANCIA</th>
+                <th>NOMBRE</th>
+                <th>ALIAS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ORDEN</th>
+                <th>INCLUIR</th>
+                <th>FECHA REGISTRO</th>
+                <th>EDITAR/ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="situacion : ${situaciones}">  <!-- Cambié "estrategia" a "submodelo" y "estrategias" a "submodelos" -->
+               <td th:text="${situacion.id}">ID</td>
+               <td th:text="${situacion.est_submodelo_id}">Est Submodelo ID</td>
+               <td th:text="${situacion.bcs_objetivo_id}">Bcs Objetivo ID</td>
+               <td th:text="${situacion.est_impacto_id}">Est Impacto ID</td>
+               <td th:text="${situacion.est_importancia_id}">Est Importancia ID</td>
+               <td th:text="${situacion.relevancia}">Relevancia</td>
+               <td th:text="${situacion.nombre}">Nombre</td>
+               <td th:text="${situacion.alias}">Alias</td>
+               <td th:text="${situacion.descripcion}">Descripción</td>
+               <td th:text="${situacion.orden}">Orden</td>
+               <td th:text="${situacion.incluir}">Incluir</td>
+               <td th:text="${#dates.format(situacion.fecha_registro, 'dd/MM/yyyy')}">Fecha Registro</td>
+               <td>
+                   <a class="btn btn-warning" th:href="@{/situacion/editar/REST/}+${situacion.id}">Editar</a>
+                   <a class="btn btn-danger" th:onclick="fxJSeliminar([[${situacion.id}]])">Eliminar</a>
+               </td>
+            </tr>
+        </tbody>
+    
+    
+    
+    
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/fxJSfuncionesREST.js"></script>
+</body>
+</html>

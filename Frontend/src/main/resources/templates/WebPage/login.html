@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>Admin LTE 3 | Log in</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" th:href="@{/css/icheck-bootstrap.min.css}" />
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/css/adminlte.min.css}" />
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Inicia Sesion</p>
+
+      <!-- Formulario de login -->
+<form id="dataForm" onsubmit="handleSubmit(event)">
+    <div class="input-group mb-3">
+        <input type="email" class="form-control" name="email" placeholder="Correo Electronico" required>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+        </div>
+    </div>
+</form>
+   <!--   <p class="row justify-content-center mt-3">
+        <a href="/registrarse" class="text-center">¿No tienes cuenta? Registrate!</a>
+      </p>
+    </div> -->
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/js/adminlte.min.js}"></script> 
+
+
+<script>
+function handleSubmit(event) {
+    event.preventDefault(); // Evitar el envío tradicional del formulario
+    console.log("Formulario enviado"); // Mensaje para confirmar que la función es llamada
+
+    let form = document.getElementById("dataForm");
+    let formData = {};
+
+    // Recorrer los elementos del formulario y agregar email y password al formData
+    for (let i = 0; i < form.elements.length; i++) {
+        let element = form.elements[i];
+        if (element.type !== "submit" && element.name !== "remember") { // Ignorar el botón y remember me
+            formData[element.name] = element.value;
+        }
+    }
+
+    let jsonData = JSON.stringify(formData);
+    console.log("Datos JSON preparados:", jsonData); // Verificar los datos JSON
+
+    // Enviar los datos a la URL correcta
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonData
+    }).then(response => {
+        console.log("Respuesta recibida del servidor:", response); // Verificar la respuesta del servidor
+        if (response.ok) {
+            window.location.href = '/admin/modelo'; // Si la respuesta es JSON, procesarla
+        } else {
+            console.warn("Respuesta del servidor no fue OK:", response.statusText);
+            return null; // O manejar un error si es necesario
+        }
+    }).then(data => {
+        if (data) {
+            console.log("Datos procesados del servidor:", data); // Manejar la respuesta JSON
+        } else {
+            console.log("No se recibieron datos JSON del servidor.");
+        }
+    }).catch(error => {
+        console.error('Error al enviar la solicitud:', error); // Manejar errores de la solicitud
+    });
+}
+</script>
+
+</body>
+</html>

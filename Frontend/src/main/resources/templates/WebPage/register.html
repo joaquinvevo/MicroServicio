@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/css/icheck-bootstrap.min.css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/adminlte.min.css" />
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="#"><b>Admin</b>LTE</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Registro de Usuario</p>
+
+      <!-- Quitamos el atributo action y method del formulario -->
+      <form id="registerForm">
+        <div class="input-group mb-3">
+          <input type="text" name="username" class="form-control" placeholder="Nombre" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Correo" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="confirmPassword" class="form-control" placeholder="Reingresar contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Registrate</button>
+          </div>
+        </div>
+      </form>
+
+          <div class="row justify-content-end mt-3">
+        <div class="col-auto">
+            <a href="/ingresar" class="text-end">Ya tengo una cuenta</a>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/adminlte.min.js"></script>
+
+<!-- JavaScript para enviar la solicitud de registro -->
+<script>
+  document.getElementById('registerForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Previene el envío normal del formulario
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const text = await response.text(); // Lee la respuesta como texto
+
+      // Aquí puedes manejar la respuesta
+      if (text.includes("exitosamente")) {
+        alert(text);
+        window.location.href = '/ingresar'; // Redirige a una página de éxito o recarga la página
+      } else {
+        alert(text); // Muestra el mensaje de error
+        location.reload(); // Recarga la página para permitir nuevo intento
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estrategia Est Modelo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="col-sm-6">
+        <form th:action="@{/modelo/grabar/REST}" th:object="${modelo}" method="POST">
+            <div class="card">
+                <div class="card-header"></div>
+                   <h3>Estrategia Est Modelo</h3>
+                <div class="card-body"></div>
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input th:field="*{id}" type="text" class="form-control" readonly="readonly"/>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input th:field="*{nombre}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Alias</label>
+                        <input th:field="*{alias}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input th:field="*{descripcion}" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Orden</label>
+                        <input th:field="*{orden}" type="number" class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Aplica solo a departamento</label>
+                        <input th:field="*{aplicaSoloADepartamentos}" type="checkbox" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha Registro</label>
+                        <input th:field="*{fechaRegistro}" type="date" class="form-control"/>
+                    </div>
+                    
+                <div class="card-footer">
+                    <input type="submit" value="Guardar" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
